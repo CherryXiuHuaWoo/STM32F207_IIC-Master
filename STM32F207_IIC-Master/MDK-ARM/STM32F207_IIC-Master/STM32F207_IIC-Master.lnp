@@ -16,7 +16,6 @@
 "stm32f207_iic-master\stm32f2xx_hal_pwr_ex.o"
 "stm32f207_iic-master\stm32f2xx_hal_gpio.o"
 "stm32f207_iic-master\stm32f2xx_hal_dma_ex.o"
-"stm32f207_iic-master\dma.o"
 "stm32f207_iic-master\usart.o"
 "stm32f207_iic-master\gpio.o"
 "stm32f207_iic-master\stm32f2xx_hal_msp.o"

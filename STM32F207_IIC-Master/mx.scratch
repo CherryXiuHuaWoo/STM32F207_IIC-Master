@@ -29,7 +29,7 @@
     <heapSize>0x200</heapSize>
     <stackSize>0x400</stackSize>
     
-    	<cpuclock>105</cpuclock>
+    	<cpuclock>100</cpuclock>
     	<board>NUCLEO-F207ZG</board>
 			
     <usedDebug>true</usedDebug>
@@ -174,10 +174,6 @@
 
                                 <file>
                                  <name>..\Src\gpio.c</name>
-                                </file>
-
-                                <file>
-                                 <name>..\Src\dma.c</name>
                                 </file>
 
                                 <file>
