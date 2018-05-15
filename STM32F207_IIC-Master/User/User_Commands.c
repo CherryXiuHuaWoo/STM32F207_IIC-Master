@@ -14,8 +14,14 @@
 #define CommandBufHead3	0x00
 
 #define CommandRx_OK	0x01
+#define CommanfRx_Fail	0xf0
 
+#define TrtgCommandHead0	0x88
+#define TrigCommandHead1	0x77
+#define TrigCommandHead2	0x66
+#define I2CTrigLen			0x03
 
+#define I2CTrigBufLen		0x7
 /*
  * Function: Command  Management
  */
@@ -24,6 +30,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 	
 	int i;
 	uint8_t ReplyBuf[CommandBufLen] = {CommandBufHead0, CommandBufHead1, CommandBufHead2, CommandBufHead3};
+	uint8_t I2CTrigBuf[7];
 	
 	if(BufLen == CommandBufLen)
 	{
@@ -42,89 +49,107 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 			{
 				/***0x0n: System Command***/
 				case SYSTEM_RESET:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
 					
 				case CONFIG_MODE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case INTERFACE_MODE:
-					ReplyBuf[3] = 1;					
+					ReplyBuf[3] = (CommandBuf[2] < 3) ? CommandRx_OK : CommanfRx_Fail;					
 					break;
-				case OUTPUT_FORMAT:
-					ReplyBuf[3] = 1;
+				
+				case OUTPUT_FORMAT: 
+					ReplyBuf[3] = (CommandBuf[2] < 5) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case MEASURE_PERIOD: 
-					ReplyBuf[3] = 1;					
-					break;					
+					ReplyBuf[3] = CommandRx_OK;					
+					break;		
+				
 				case OUTPUT_PERIOD:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case UART_BOUNDRATE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x13) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x1n:Algorthm Command***/
 				case INTTIME:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = ((CommandBuf[2] == 0) ||
+								   (CommandBuf[2] == 3) ||
+								   (CommandBuf[2] == 7)) ? CommandRx_OK : CommanfRx_Fail;		
 					break;
+				
 				case INTTIME_MODE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case KALMAN_FILTER:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case AMB_COMP_MODE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case REF_COMP_MODE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case MAXRANGE_MODE:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case UNIT:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
+				
 				case TILIT_TOOLINT_DEFAULTS:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x2n:Extend Algorthm Command***/
 				case AMP_THRE_MIN:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case AMP_THRE_MAX:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case BLIND_THRE_MAX:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case INT3TO0_TRANSAMMPTHRES:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x3n:Compensation Command***/
 				case OFFSET:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case KALAM_SYSTEM_COV_INT:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case KALAM_SYSTEM_COV_NOR:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
+				
 				case KALAM_DISTLIMIT_IDX:
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = CommandRx_OK;
 					break;
 
 				/***0x4n:Trigger Command***/
 				case SET_IIC_ADDR:  
-					ReplyBuf[3] = 1;
+					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					break;
-				case USER_CONFIG_DEFAULTS:
-					ReplyBuf[3] = 1;
-					break;
+
 				default:
 					ReplyBuf[3] = 0xff;
 					break;
@@ -147,6 +172,29 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 		{
 			printf("Err: Command Head = 0x%2x 0x%2x 0x%2x 0x%2x\r\n", 
 				CommandBuf[0], CommandBuf[1], CommandBuf[2], CommandBuf[3]);
+		}
+	}
+	else if(BufLen == I2CTrigLen)
+	{
+		if((CommandBuf[0] == TrtgCommandHead0) && 
+		   (CommandBuf[1] == TrigCommandHead1) &&
+		   (CommandBuf[2] == TrigCommandHead2))
+		{
+			if(HAL_I2C_Master_Receive(&hi2c1, 0x00, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
+			{
+				printf("cordist=%5d, amp=%5d, inttime=%5d\r\n", 
+						(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
+						(I2CTrigBuf[2] | (I2CTrigBuf[3] << 8)),
+						I2CTrigBuf[4]);
+			}
+			else
+			{
+				printf("Err: I2C Trigger\r\n");
+			}
+		}
+		else
+		{
+			printf("Err: I2C Trigger Command\r\n");
 		}
 	}
 	else
