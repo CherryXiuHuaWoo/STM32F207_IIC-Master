@@ -188,7 +188,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 			if(HAL_I2C_Master_Receive(&hi2c1, g_SlaveAddr, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
 			{
 				printf("cordist=%5d, amp=%5d, inttime=%5d\r\n", 
-						(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
+						(int16_t)(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
 						(I2CTrigBuf[2] | (I2CTrigBuf[3] << 8)),
 						I2CTrigBuf[4]);
 			}
