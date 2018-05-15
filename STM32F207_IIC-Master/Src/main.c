@@ -50,6 +50,7 @@
 #include "main.h"
 #include "stm32f2xx_hal.h"
 #include "cmsis_os.h"
+#include "dma.h"
 #include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
@@ -57,6 +58,7 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+#include "User_Commands.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -76,14 +78,14 @@ void MX_FREERTOS_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint8_t start[]= {'H','e', 'l', 'l','o','\r','\n'};
+uint8_t g_usart2_rx_buf[USART_BUF_SIZE] = {0};    /*usart2_rx_buf*/
 /* USER CODE END 0 */
 
 int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+//	HAL_Delay(100);
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -104,12 +106,15 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
-//  HAL_UART_Transmit(&huart2, start, sizeof(start),10);
-	printf("Hello\r\n");
+  HAL_UART_Receive_DMA(&huart2, g_usart2_rx_buf, USART_BUF_SIZE);
+  __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);    //UART_IT_IDLE
+  
+  printf("IIC Test Start!\r\n");
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -212,6 +217,7 @@ void _Error_Handler(char * file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
+	printf("Wrong parameters value: file %s on line %d\r\n", file, line);
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */

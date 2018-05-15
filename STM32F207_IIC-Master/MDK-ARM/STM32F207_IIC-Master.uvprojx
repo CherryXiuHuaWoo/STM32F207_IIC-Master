@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F207xx</Define>
               <Undefine />
-              <IncludePath>../Inc;             ../Drivers/STM32F2xx_HAL_Driver/Inc;             ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy;             ../Drivers/CMSIS/Device/ST/STM32F2xx/Include;             ../Drivers/CMSIS/Include;            ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;            ../Middlewares/Third_Party/FreeRTOS/Source/include;            ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32F2xx_HAL_Driver/Inc; ../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32F2xx/Include; ../Drivers/CMSIS/Include; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS; ..\User</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -546,7 +546,26 @@
               <FileType>1</FileType>
               <FilePath>../Src/freertos.c</FilePath>
             </File>
-          </Files>
+            <File>
+              <FileName>User_Commands.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\User_Commands.c</FilePath>
+            </File>
+            <File>
+              <FileName>User_IIC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\User_IIC.c</FilePath>
+            </File>
+            <File>
+              <FileName>User_Task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\User_Task.c</FilePath>
+            </File>
+          <File>
+              <FileName>dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/dma.c</FilePath>
+            </File></Files>
         </Group>
         <Group>
           <GroupName>Middlewares/FreeRTOS</GroupName>

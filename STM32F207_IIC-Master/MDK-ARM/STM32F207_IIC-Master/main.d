@@ -42,7 +42,9 @@ stm32f207_iic-master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/
 stm32f207_iic-master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f207_iic-master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f207_iic-master\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+stm32f207_iic-master\main.o: ../Inc/dma.h
 stm32f207_iic-master\main.o: ../Inc/i2c.h
 stm32f207_iic-master\main.o: ../Inc/usart.h
 stm32f207_iic-master\main.o: ../Inc/gpio.h
 stm32f207_iic-master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32f207_iic-master\main.o: ..\User\User_Commands.h

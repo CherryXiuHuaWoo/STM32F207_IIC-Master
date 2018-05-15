@@ -37,10 +37,14 @@
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "User_Commands.h"
+extern uint8_t g_usart2_rx_buf[USART_BUF_SIZE];    /*usart2_rx_buf*/
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern DMA_HandleTypeDef hdma_usart2_rx;
+extern DMA_HandleTypeDef hdma_usart2_tx;
+extern UART_HandleTypeDef huart2;
 
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
@@ -80,6 +84,63 @@ void PVD_IRQHandler(void)
   /* USER CODE BEGIN PVD_IRQn 1 */
 
   /* USER CODE END PVD_IRQn 1 */
+}
+
+/**
+* @brief This function handles DMA1 stream5 global interrupt.
+*/
+void DMA1_Stream5_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart2_rx);
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 1 */
+}
+
+/**
+* @brief This function handles DMA1 stream6 global interrupt.
+*/
+void DMA1_Stream6_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream6_IRQn 0 */
+
+  /* USER CODE END DMA1_Stream6_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart2_tx);
+  /* USER CODE BEGIN DMA1_Stream6_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream6_IRQn 1 */
+}
+
+/**
+* @brief This function handles USART2 global interrupt.
+*/
+void USART2_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART2_IRQn 0 */
+  uint32_t tmp = 0;
+
+  if((__HAL_UART_GET_FLAG(&huart2,UART_FLAG_IDLE) != RESET))
+  {
+      __HAL_UART_CLEAR_IDLEFLAG(&huart2);
+
+      tmp = huart2.Instance->SR;
+      tmp = huart2.Instance->DR;
+
+      HAL_UART_DMAStop(&huart2);
+
+      tmp =  USART_BUF_SIZE - hdma_usart2_rx.Instance->NDTR;
+      HAL_UART_Receive_DMA(&huart2, g_usart2_rx_buf, USART_BUF_SIZE);
+
+      USART2_RX_Proc(g_usart2_rx_buf, tmp);
+  }
+  /* USER CODE END USART2_IRQn 0 */
+  HAL_UART_IRQHandler(&huart2);
+  /* USER CODE BEGIN USART2_IRQn 1 */
+
+  /* USER CODE END USART2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

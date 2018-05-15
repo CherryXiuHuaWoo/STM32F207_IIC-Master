@@ -43,3 +43,4 @@ stm32f207_iic-master\stm32f2xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/
 stm32f207_iic-master\stm32f2xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f207_iic-master\stm32f2xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f207_iic-master\stm32f2xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+stm32f207_iic-master\stm32f2xx_it.o: ..\User\User_Commands.h

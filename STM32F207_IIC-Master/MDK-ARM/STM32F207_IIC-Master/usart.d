@@ -29,4 +29,5 @@ stm32f207_iic-master\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_
 stm32f207_iic-master\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 stm32f207_iic-master\usart.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
 stm32f207_iic-master\usart.o: ../Inc/gpio.h
+stm32f207_iic-master\usart.o: ../Inc/dma.h
 stm32f207_iic-master\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
