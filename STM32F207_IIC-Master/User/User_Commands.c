@@ -22,6 +22,10 @@
 #define I2CTrigLen			0x03
 
 #define I2CTrigBufLen		0x7
+
+uint8_t g_SlaveAddr = 0;
+extern uint8_t g_usart2_rx_buf[USART_BUF_SIZE];    /*usart2_rx_buf*/
+
 /*
  * Function: Command  Management
  */
@@ -31,7 +35,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 	int i;
 	uint8_t ReplyBuf[CommandBufLen] = {CommandBufHead0, CommandBufHead1, CommandBufHead2, CommandBufHead3};
 	uint8_t I2CTrigBuf[7];
-	
+
 	if(BufLen == CommandBufLen)
 	{
 		if((CommandBuf[0] == CommandBufHead0) && 
@@ -148,6 +152,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 				/***0x4n:Trigger Command***/
 				case SET_IIC_ADDR:  
 					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
+					g_SlaveAddr = CommandBuf[4];
 					break;
 
 				default:
@@ -157,7 +162,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 			
 			if(ReplyBuf[3] == CommandRx_OK)
 			{
-				if(HAL_I2C_Master_Transmit(&hi2c1, 0x00, &CommandBuf[4], I2CTxBufLen, 10) != HAL_OK)
+				if(HAL_I2C_Master_Transmit(&hi2c1, g_SlaveAddr, &CommandBuf[4], I2CTxBufLen, 10) != HAL_OK)
 				{
 					printf("Err: I2C Send Command!\r\n");	
 				}
@@ -180,7 +185,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 		   (CommandBuf[1] == TrigCommandHead1) &&
 		   (CommandBuf[2] == TrigCommandHead2))
 		{
-			if(HAL_I2C_Master_Receive(&hi2c1, 0x00, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
+			if(HAL_I2C_Master_Receive(&hi2c1, g_SlaveAddr, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
 			{
 				printf("cordist=%5d, amp=%5d, inttime=%5d\r\n", 
 						(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
