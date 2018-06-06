@@ -112,11 +112,13 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
+	  
 	  if(g_RxFlag != 0)
 	  {
 		  USART2_RX_Proc(g_Procbuf, g_RxFlag);
 		  g_RxFlag =0;
 	  }
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_9, GPIO_PIN_SET);
       
   /* USER CODE BEGIN 3 */
   }

@@ -330,12 +330,14 @@ Section Cross References
     main.o(i.main) refers to stm32f2xx_hal_uart.o(i.HAL_UART_Receive_DMA) for HAL_UART_Receive_DMA
     main.o(i.main) refers to printf8.o(i.__0printf$8) for __2printf
     main.o(i.main) refers to user_commands.o(i.USART2_RX_Proc) for USART2_RX_Proc
+    main.o(i.main) refers to stm32f2xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     main.o(i.main) refers to main.o(.bss) for .bss
     main.o(i.main) refers to usart.o(.bss) for huart2
     main.o(i.main) refers to main.o(.data) for .data
     user_commands.o(i.USART2_RX_Proc) refers to user_commands.o(i.UserCommand) for UserCommand
     user_commands.o(i.UserCommand) refers to printf8.o(i.__0printf$8) for __2printf
     user_commands.o(i.UserCommand) refers to stm32f2xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) for HAL_I2C_Master_Transmit
+    user_commands.o(i.UserCommand) refers to stm32f2xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     user_commands.o(i.UserCommand) refers to stm32f2xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
     user_commands.o(i.UserCommand) refers to stm32f2xx_hal_i2c.o(i.HAL_I2C_Master_Receive) for HAL_I2C_Master_Receive
     user_commands.o(i.UserCommand) refers to user_commands.o(.constdata) for .constdata
@@ -1105,28 +1107,28 @@ Image Symbol Table
     i.USART2_IRQHandler                      0x080021f0   Section        0  stm32f2xx_it.o(i.USART2_IRQHandler)
     i.USART2_RX_Proc                         0x08002250   Section        0  user_commands.o(i.USART2_RX_Proc)
     i.UserCommand                            0x08002254   Section        0  user_commands.o(i.UserCommand)
-    i._Error_Handler                         0x080024d8   Section        0  main.o(i._Error_Handler)
-    i.__0printf$8                            0x080024dc   Section        0  printf8.o(i.__0printf$8)
-    i.__scatterload_copy                     0x080024fc   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800250a   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0800250c   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x0800251c   Section        0  printf8.o(i._printf_core)
-    _printf_core                             0x0800251d   Thumb Code   996  printf8.o(i._printf_core)
-    i._printf_post_padding                   0x0800292c   Section        0  printf8.o(i._printf_post_padding)
-    _printf_post_padding                     0x0800292d   Thumb Code    36  printf8.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x08002950   Section        0  printf8.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x08002951   Thumb Code    46  printf8.o(i._printf_pre_padding)
-    i.fputc                                  0x08002980   Section        0  usart.o(i.fputc)
-    i.main                                   0x08002998   Section        0  main.o(i.main)
-    .constdata                               0x08002a04   Section       16  system_stm32f2xx.o(.constdata)
-    .constdata                               0x08002a14   Section        8  system_stm32f2xx.o(.constdata)
-    .constdata                               0x08002a1c   Section        8  stm32f2xx_hal_dma.o(.constdata)
-    flagBitshiftOffset                       0x08002a1c   Data           8  stm32f2xx_hal_dma.o(.constdata)
-    .constdata                               0x08002a24   Section        8  user_commands.o(.constdata)
+    i._Error_Handler                         0x08002554   Section        0  main.o(i._Error_Handler)
+    i.__0printf$8                            0x08002558   Section        0  printf8.o(i.__0printf$8)
+    i.__scatterload_copy                     0x08002578   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08002586   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08002588   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x08002598   Section        0  printf8.o(i._printf_core)
+    _printf_core                             0x08002599   Thumb Code   996  printf8.o(i._printf_core)
+    i._printf_post_padding                   0x080029a8   Section        0  printf8.o(i._printf_post_padding)
+    _printf_post_padding                     0x080029a9   Thumb Code    36  printf8.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x080029cc   Section        0  printf8.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x080029cd   Thumb Code    46  printf8.o(i._printf_pre_padding)
+    i.fputc                                  0x080029fc   Section        0  usart.o(i.fputc)
+    i.main                                   0x08002a14   Section        0  main.o(i.main)
+    .constdata                               0x08002a90   Section       16  system_stm32f2xx.o(.constdata)
+    .constdata                               0x08002aa0   Section        8  system_stm32f2xx.o(.constdata)
+    .constdata                               0x08002aa8   Section        8  stm32f2xx_hal_dma.o(.constdata)
+    flagBitshiftOffset                       0x08002aa8   Data           8  stm32f2xx_hal_dma.o(.constdata)
+    .constdata                               0x08002ab0   Section        8  user_commands.o(.constdata)
     .data                                    0x20000000   Section        4  system_stm32f2xx.o(.data)
     .data                                    0x20000004   Section        4  stm32f2xx_hal.o(.data)
     .data                                    0x20000008   Section        4  main.o(.data)
-    .data                                    0x2000000c   Section        1  user_commands.o(.data)
+    .data                                    0x2000000c   Section        2  user_commands.o(.data)
     .data                                    0x20000010   Section        4  stdout.o(.data)
     .bss                                     0x20000014   Section      256  usart.o(.bss)
     .bss                                     0x20000114   Section       84  i2c.o(.bss)
@@ -1339,24 +1341,25 @@ Image Symbol Table
     SystemInit                               0x08001dd9   Thumb Code    54  system_stm32f2xx.o(i.SystemInit)
     USART2_IRQHandler                        0x080021f1   Thumb Code    74  stm32f2xx_it.o(i.USART2_IRQHandler)
     USART2_RX_Proc                           0x08002251   Thumb Code     4  user_commands.o(i.USART2_RX_Proc)
-    UserCommand                              0x08002255   Thumb Code   416  user_commands.o(i.UserCommand)
-    _Error_Handler                           0x080024d9   Thumb Code     2  main.o(i._Error_Handler)
-    __0printf$8                              0x080024dd   Thumb Code    22  printf8.o(i.__0printf$8)
-    __1printf$8                              0x080024dd   Thumb Code     0  printf8.o(i.__0printf$8)
-    __2printf                                0x080024dd   Thumb Code     0  printf8.o(i.__0printf$8)
-    __scatterload_copy                       0x080024fd   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800250b   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0800250d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    fputc                                    0x08002981   Thumb Code    20  usart.o(i.fputc)
-    main                                     0x08002999   Thumb Code    74  main.o(i.main)
-    AHBPrescTable                            0x08002a04   Data          16  system_stm32f2xx.o(.constdata)
-    APBPrescTable                            0x08002a14   Data           8  system_stm32f2xx.o(.constdata)
-    Region$$Table$$Base                      0x08002a2c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002a4c   Number         0  anon$$obj.o(Region$$Table)
+    UserCommand                              0x08002255   Thumb Code   496  user_commands.o(i.UserCommand)
+    _Error_Handler                           0x08002555   Thumb Code     2  main.o(i._Error_Handler)
+    __0printf$8                              0x08002559   Thumb Code    22  printf8.o(i.__0printf$8)
+    __1printf$8                              0x08002559   Thumb Code     0  printf8.o(i.__0printf$8)
+    __2printf                                0x08002559   Thumb Code     0  printf8.o(i.__0printf$8)
+    __scatterload_copy                       0x08002579   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08002587   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08002589   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    fputc                                    0x080029fd   Thumb Code    20  usart.o(i.fputc)
+    main                                     0x08002a15   Thumb Code    88  main.o(i.main)
+    AHBPrescTable                            0x08002a90   Data          16  system_stm32f2xx.o(.constdata)
+    APBPrescTable                            0x08002aa0   Data           8  system_stm32f2xx.o(.constdata)
+    Region$$Table$$Base                      0x08002ab8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002ad8   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f2xx.o(.data)
     uwTick                                   0x20000004   Data           4  stm32f2xx_hal.o(.data)
     g_RxFlag                                 0x20000008   Data           4  main.o(.data)
     g_SlaveAddr                              0x2000000c   Data           1  user_commands.o(.data)
+    g_cal_chk                                0x2000000d   Data           1  user_commands.o(.data)
     __stdout                                 0x20000010   Data           4  stdout.o(.data)
     huart2                                   0x20000014   Data          64  usart.o(.bss)
     hdma_usart2_rx                           0x20000054   Data          96  usart.o(.bss)
@@ -1374,9 +1377,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000185
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002a60, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002aec, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00002a4c, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00002ad8, Max: 0x00100000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1473,25 +1476,25 @@ Memory Map of the image
     0x0800218c   0x00000064   Code   RO          520    i.UART_WaitOnFlagUntilTimeout  stm32f2xx_hal_uart.o
     0x080021f0   0x00000060   Code   RO         2022    i.USART2_IRQHandler  stm32f2xx_it.o
     0x08002250   0x00000004   Code   RO         2131    i.USART2_RX_Proc    user_commands.o
-    0x08002254   0x00000284   Code   RO         2132    i.UserCommand       user_commands.o
-    0x080024d8   0x00000002   Code   RO         2084    i._Error_Handler    main.o
-    0x080024da   0x00000002   PAD
-    0x080024dc   0x00000020   Code   RO         2423    i.__0printf$8       mc_w.l(printf8.o)
-    0x080024fc   0x0000000e   Code   RO         2517    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800250a   0x00000002   Code   RO         2518    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800250c   0x0000000e   Code   RO         2519    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800251a   0x00000002   PAD
-    0x0800251c   0x00000410   Code   RO         2430    i._printf_core      mc_w.l(printf8.o)
-    0x0800292c   0x00000024   Code   RO         2431    i._printf_post_padding  mc_w.l(printf8.o)
-    0x08002950   0x0000002e   Code   RO         2432    i._printf_pre_padding  mc_w.l(printf8.o)
-    0x0800297e   0x00000002   PAD
-    0x08002980   0x00000018   Code   RO         1872    i.fputc             usart.o
-    0x08002998   0x0000006c   Code   RO         2085    i.main              main.o
-    0x08002a04   0x00000010   Data   RO           15    .constdata          system_stm32f2xx.o
-    0x08002a14   0x00000008   Data   RO           16    .constdata          system_stm32f2xx.o
-    0x08002a1c   0x00000008   Data   RO         1224    .constdata          stm32f2xx_hal_dma.o
-    0x08002a24   0x00000008   Data   RO         2133    .constdata          user_commands.o
-    0x08002a2c   0x00000020   Data   RO         2515    Region$$Table       anon$$obj.o
+    0x08002254   0x00000300   Code   RO         2132    i.UserCommand       user_commands.o
+    0x08002554   0x00000002   Code   RO         2084    i._Error_Handler    main.o
+    0x08002556   0x00000002   PAD
+    0x08002558   0x00000020   Code   RO         2423    i.__0printf$8       mc_w.l(printf8.o)
+    0x08002578   0x0000000e   Code   RO         2517    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08002586   0x00000002   Code   RO         2518    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08002588   0x0000000e   Code   RO         2519    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08002596   0x00000002   PAD
+    0x08002598   0x00000410   Code   RO         2430    i._printf_core      mc_w.l(printf8.o)
+    0x080029a8   0x00000024   Code   RO         2431    i._printf_post_padding  mc_w.l(printf8.o)
+    0x080029cc   0x0000002e   Code   RO         2432    i._printf_pre_padding  mc_w.l(printf8.o)
+    0x080029fa   0x00000002   PAD
+    0x080029fc   0x00000018   Code   RO         1872    i.fputc             usart.o
+    0x08002a14   0x0000007c   Code   RO         2085    i.main              main.o
+    0x08002a90   0x00000010   Data   RO           15    .constdata          system_stm32f2xx.o
+    0x08002aa0   0x00000008   Data   RO           16    .constdata          system_stm32f2xx.o
+    0x08002aa8   0x00000008   Data   RO         1224    .constdata          stm32f2xx_hal_dma.o
+    0x08002ab0   0x00000008   Data   RO         2133    .constdata          user_commands.o
+    0x08002ab8   0x00000020   Data   RO         2515    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000005e8, Max: 0x00020000, ABSOLUTE)
@@ -1501,8 +1504,8 @@ Memory Map of the image
     0x20000000   0x00000004   Data   RW           17    .data               system_stm32f2xx.o
     0x20000004   0x00000004   Data   RW          218    .data               stm32f2xx_hal.o
     0x20000008   0x00000004   Data   RW         2087    .data               main.o
-    0x2000000c   0x00000001   Data   RW         2134    .data               user_commands.o
-    0x2000000d   0x00000003   PAD
+    0x2000000c   0x00000002   Data   RW         2134    .data               user_commands.o
+    0x2000000e   0x00000002   PAD
     0x20000010   0x00000004   Data   RW         2491    .data               mc_w.l(stdout.o)
     0x20000014   0x00000100   Zero   RW         1873    .bss                usart.o
     0x20000114   0x00000054   Zero   RW         1977    .bss                i2c.o
@@ -1520,7 +1523,7 @@ Image component sizes
         60          4          0          0          0        786   dma.o
        568         36          0          0          0       1295   gpio.o
        156         36          0          0         84       1633   i2c.o
-       220         34          0          4        128       2506   main.o
+       236         36          0          4        128       2518   main.o
         36          8        388          0       1024        824   startup_stm32f207xx.o
        120         22          0          4          0       3607   stm32f2xx_hal.o
        228         14          0          0          0      28865   stm32f2xx_hal_cortex.o
@@ -1534,12 +1537,12 @@ Image component sizes
        142         34          0          0          0       4032   stm32f2xx_it.o
         72         18         24          4          0     629215   system_stm32f2xx.o
        332         64          0          0        256       2460   usart.o
-       648        256          8          1          0       2555   user_commands.o
+       772        300          8          2          0       2657   user_commands.o
 
     ----------------------------------------------------------------------
-      8964        736        460         16       1492     712979   Object Totals
+      9104        782        460         16       1492     713093   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        16          0          0          3          0          0   (incl. Padding)
+        16          0          0          2          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1581,15 +1584,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10368        806        460         20       1492     709827   Grand Totals
-     10368        806        460         20       1492     709827   ELF Image Totals
-     10368        806        460         20          0          0   ROM Totals
+     10508        852        460         20       1492     709941   Grand Totals
+     10508        852        460         20       1492     709941   ELF Image Totals
+     10508        852        460         20          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                10828 (  10.57kB)
+    Total RO  Size (Code + RO Data)                10968 (  10.71kB)
     Total RW  Size (RW Data + ZI Data)              1512 (   1.48kB)
-    Total ROM Size (Code + RO Data + RW Data)      10848 (  10.59kB)
+    Total ROM Size (Code + RO Data + RW Data)      10988 (  10.73kB)
 
 ==============================================================================
 

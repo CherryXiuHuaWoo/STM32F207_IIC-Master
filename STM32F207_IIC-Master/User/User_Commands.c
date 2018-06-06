@@ -24,6 +24,7 @@
 #define I2CTrigBufLen		0x7
 
 uint8_t g_SlaveAddr = 0;
+uint8_t g_cal_chk = 0;
 extern uint8_t g_usart2_rx_buf[USART_BUF_SIZE];    /*usart2_rx_buf*/
 
 /*
@@ -61,11 +62,11 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 					break;
 				
 				case INTERFACE_MODE:
-					ReplyBuf[3] = (CommandBuf[2] < 3) ? CommandRx_OK : CommanfRx_Fail;					
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 3) ? CommandRx_OK : CommanfRx_Fail;					
 					break;
 				
 				case OUTPUT_FORMAT: 
-					ReplyBuf[3] = (CommandBuf[2] < 5) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 5) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case MEASURE_PERIOD: 
@@ -77,42 +78,42 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 					break;
 				
 				case UART_BOUNDRATE:
-					ReplyBuf[3] = (CommandBuf[2] < 0x13) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x13) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x1n:Algorthm Command***/
 				case INTTIME:
-					ReplyBuf[3] = ((CommandBuf[2] == 0) ||
-								   (CommandBuf[2] == 3) ||
-								   (CommandBuf[2] == 7)) ? CommandRx_OK : CommanfRx_Fail;		
+					ReplyBuf[3] = ((CommandBuf[BufLen - 2] == 0) ||
+								   (CommandBuf[BufLen - 2] == 3) ||
+								   (CommandBuf[BufLen - 2] == 7)) ? CommandRx_OK : CommanfRx_Fail;		
 					break;
 				
 				case INTTIME_MODE:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case KALMAN_FILTER:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case AMB_COMP_MODE:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case REF_COMP_MODE:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case MAXRANGE_MODE:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case UNIT:
-					ReplyBuf[3] = (CommandBuf[2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x02) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 				
 				case TILIT_TOOLINT_DEFAULTS:
-					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x2n:Extend Algorthm Command***/
@@ -129,7 +130,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 					break;
 				
 				case INT3TO0_TRANSAMMPTHRES:
-					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					break;
 
 				/***0x3n:Compensation Command***/
@@ -151,7 +152,7 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 
 				/***0x4n:Trigger Command***/
 				case SET_IIC_ADDR:  
-					ReplyBuf[3] = (CommandBuf[2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
+					ReplyBuf[3] = (CommandBuf[BufLen - 2] < 0x1) ? CommandRx_OK : CommanfRx_Fail;
 					g_SlaveAddr = CommandBuf[4];
 					break;
 
@@ -162,13 +163,14 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 			
 			if(ReplyBuf[3] == CommandRx_OK)
 			{
-				if(HAL_I2C_Master_Transmit(&hi2c1, g_SlaveAddr, &CommandBuf[4], I2CTxBufLen, 10) != HAL_OK)
+				if(HAL_I2C_Master_Transmit(&hi2c1, 0x54<<1, &CommandBuf[4], I2CTxBufLen, 1) != HAL_OK)
 				{
+					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_9, GPIO_PIN_SET);
 					printf("Err: I2C Send Command!\r\n");	
 				}
 			}
 			
-			if(HAL_UART_Transmit(&huart2, ReplyBuf, CommandBufLen, 10) != HAL_OK)
+			if(HAL_UART_Transmit(&huart2, ReplyBuf, CommandBufLen, 1) != HAL_OK)
 			{
 				printf("Err: Command Reply!\r\n");	
 			}
@@ -185,15 +187,28 @@ void UserCommand(uint8_t *CommandBuf, int BufLen)
 		   (CommandBuf[1] == TrigCommandHead1) &&
 		   (CommandBuf[2] == TrigCommandHead2))
 		{
-			if(HAL_I2C_Master_Receive(&hi2c1, g_SlaveAddr, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
+			if(HAL_I2C_Master_Receive(&hi2c1, 0x54<<1, I2CTrigBuf, I2CTrigBufLen,10) == HAL_OK)
 			{
-				printf("cordist=%5d, amp=%5d, inttime=%5d\r\n", 
-						(int16_t)(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
-						(I2CTrigBuf[2] | (I2CTrigBuf[3] << 8)),
-						I2CTrigBuf[4]);
+				for(i =0, g_cal_chk = 0; i < 6; i++)
+				{
+					g_cal_chk += I2CTrigBuf[i];
+				}
+				
+				if(g_cal_chk == I2CTrigBuf[6])
+				{
+					printf("cordist=%5d, amp=%5d, inttime=%5d\r\n", 
+							(int16_t)(I2CTrigBuf[0] | (I2CTrigBuf[1] << 8)),
+							(I2CTrigBuf[2] | (I2CTrigBuf[3] << 8)),
+							I2CTrigBuf[4]);
+				}
+				else
+				{
+					printf("Err: data check cal=0x%2x,rx=0x%2x!\r\n",g_cal_chk, I2CTrigBuf[6]);
+				}
 			}
 			else
 			{
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_9, GPIO_PIN_SET);
 				printf("Err: I2C Trigger\r\n");
 			}
 		}
