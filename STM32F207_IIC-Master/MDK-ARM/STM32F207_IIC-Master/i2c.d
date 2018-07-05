@@ -29,3 +29,4 @@ stm32f207_iic-master\i2c.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pw
 stm32f207_iic-master\i2c.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 stm32f207_iic-master\i2c.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
 stm32f207_iic-master\i2c.o: ../Inc/gpio.h
+stm32f207_iic-master\i2c.o: ../Inc/dma.h

@@ -1,7 +1,8 @@
+
 /**
   ******************************************************************************
-  * File Name          : main.c
-  * Description        : Main program body
+  * @file           : main.c
+  * @brief          : Main program body
   ******************************************************************************
   ** This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -35,7 +36,6 @@
   *
   ******************************************************************************
   */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f2xx_hal.h"
@@ -47,7 +47,8 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
-#include "User_Commands.h"
+#include "UsartCommandProc.h"
+#include "I2CProc.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -66,14 +67,18 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint8_t g_usart2_rx_buf[USART_BUF_SIZE] = {0};    /*usart2_rx_buf*/
-uint8_t g_Procbuf[USART_BUF_SIZE] = {0};    /*rx_buf*/
-int g_RxFlag = 0;
+
+struct WorkMode __workMode;
+
 /* USER CODE END 0 */
 
+/**
+  * @brief  The application entry point.
+  *
+  * @retval None
+  */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 //	HAL_Delay(100);
   /* USER CODE END 1 */
@@ -99,12 +104,10 @@ int main(void)
   MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART2_UART_Init();
-
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_DMA(&huart2, g_usart2_rx_buf, USART_BUF_SIZE);
-  __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);    //UART_IT_IDLE
+  UsartInit();
   
-  printf("IIC Test Start!\r\n");
+  printf("STM32F207 Ready!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,22 +115,19 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-	  
-	  if(g_RxFlag != 0)
-	  {
-		  USART2_RX_Proc(g_Procbuf, g_RxFlag);
-		  g_RxFlag =0;
-	  }
-	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_9, GPIO_PIN_SET);
-      
+
   /* USER CODE BEGIN 3 */
+	UserCommandExitCheck();
+	I2CWork(__workMode.workMode, __workMode.I2CSlaveNum, __workMode.I2CSlaveAddr);
   }
   /* USER CODE END 3 */
 
 }
 
-/** System Clock Configuration
-*/
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
 
@@ -181,46 +181,44 @@ void SystemClock_Config(void)
 
 /**
   * @brief  This function is executed in case of error occurrence.
-  * @param  None
+  * @param  file: The file name as string.
+  * @param  line: The line in file as a number.
   * @retval None
   */
-void _Error_Handler(char * file, int line)
+void _Error_Handler(char *file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   while(1) 
   {
   }
-  /* USER CODE END Error_Handler_Debug */ 
+  /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef USE_FULL_ASSERT
-
+#ifdef  USE_FULL_ASSERT
 /**
-   * @brief Reports the name of the source file and the source line number
-   * where the assert_param error has occurred.
-   * @param file: pointer to the source file name
-   * @param line: assert_param error line source number
-   * @retval None
-   */
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t* file, uint32_t line)
-{
+{ 
   /* USER CODE BEGIN 6 */
 	printf("Wrong parameters value: file %s on line %d\r\n", file, line);
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
-
 }
-
-#endif
-
-/**
-  * @}
-  */ 
+#endif /* USE_FULL_ASSERT */
 
 /**
   * @}
-*/ 
+  */
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

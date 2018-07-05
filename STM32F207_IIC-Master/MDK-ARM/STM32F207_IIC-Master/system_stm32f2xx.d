@@ -1,4 +1,4 @@
-stm32f207_iic-master\system_stm32f2xx.o: ../Src/system_stm32f2xx.c
+stm32f207_iic-master\system_stm32f2xx.o: ..//Src/system_stm32f2xx.c
 stm32f207_iic-master\system_stm32f2xx.o: ../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f2xx.h
 stm32f207_iic-master\system_stm32f2xx.o: ../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f207xx.h
 stm32f207_iic-master\system_stm32f2xx.o: ../Drivers/CMSIS/Include/core_cm3.h

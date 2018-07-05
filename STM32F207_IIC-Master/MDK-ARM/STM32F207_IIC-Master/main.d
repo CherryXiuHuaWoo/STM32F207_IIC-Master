@@ -32,4 +32,5 @@ stm32f207_iic-master\main.o: ../Inc/i2c.h
 stm32f207_iic-master\main.o: ../Inc/usart.h
 stm32f207_iic-master\main.o: ../Inc/gpio.h
 stm32f207_iic-master\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-stm32f207_iic-master\main.o: ..\User\User_Commands.h
+stm32f207_iic-master\main.o: ..\User\UsartCommandProc.h
+stm32f207_iic-master\main.o: ..\User\I2CProc.h
