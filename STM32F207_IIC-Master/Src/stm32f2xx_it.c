@@ -36,7 +36,7 @@
 #include "stm32f2xx_it.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "UsartCommandProc.h"
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -189,7 +189,8 @@ void I2C1_ER_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-	printf("USART2_IRQHandler\r\n");
+	HAL_UART_IDLECallback(&huart2);
+	return;
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */

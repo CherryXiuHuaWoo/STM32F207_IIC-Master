@@ -16,6 +16,6 @@ struct WorkMode
 
 void UsartInit(void);
 void UserCommandExitCheck(void);
-
+void HAL_UART_IDLECallback(UART_HandleTypeDef *huart);
 #endif
 

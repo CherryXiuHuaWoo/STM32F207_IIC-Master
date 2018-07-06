@@ -28,3 +28,4 @@ stm32f207_iic-master\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2
 stm32f207_iic-master\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h
 stm32f207_iic-master\stm32f2xx_it.o: ../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h
 stm32f207_iic-master\stm32f2xx_it.o: ../Inc/stm32f2xx_it.h
+stm32f207_iic-master\stm32f2xx_it.o: ..\User\UsartCommandProc.h

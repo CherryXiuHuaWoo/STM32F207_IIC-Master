@@ -453,7 +453,7 @@ I (../Inc/i2c.h)(0x5B3D8BB7)
 I (../Inc/usart.h)(0x5B3D8BB7)
 I (../Inc/gpio.h)(0x5B3D8BB5)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (..\User\UsartCommandProc.h)(0x5B3DD87F)
+I (..\User\UsartCommandProc.h)(0x5B3ED726)
 I (..\User\I2CProc.h)(0x5B3DF13A)
 F (../Src/gpio.c)(0x5B3D8BB5)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\gpio.o --omf_browse stm32f207_iic-master\gpio.crf --depend stm32f207_iic-master\gpio.d)
 I (../Inc/gpio.h)(0x5B3D8BB5)
@@ -576,7 +576,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x5A94FFFE)
 I (../Inc/gpio.h)(0x5B3D8BB5)
 I (../Inc/dma.h)(0x5B3D8BB6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-F (../Src/stm32f2xx_it.c)(0x5B3DF7E6)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\stm32f2xx_it.o --omf_browse stm32f207_iic-master\stm32f2xx_it.crf --depend stm32f207_iic-master\stm32f2xx_it.d)
+F (../Src/stm32f2xx_it.c)(0x5B3ED726)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\stm32f2xx_it.o --omf_browse stm32f207_iic-master\stm32f2xx_it.crf --depend stm32f207_iic-master\stm32f2xx_it.d)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h)(0x5A94FFFE)
 I (../Inc/stm32f2xx_hal_conf.h)(0x5B3D8BB8)
 I (../Inc/main.h)(0x5B3DB8CA)
@@ -605,6 +605,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x5A94FFFE)
 I (../Inc/stm32f2xx_it.h)(0x5B3D8BB7)
+I (..\User\UsartCommandProc.h)(0x5B3ED726)
 F (../Src/stm32f2xx_hal_msp.c)(0x5B3D8BB8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\stm32f2xx_hal_msp.o --omf_browse stm32f207_iic-master\stm32f2xx_hal_msp.crf --depend stm32f207_iic-master\stm32f2xx_hal_msp.d)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.h)(0x5A94FFFE)
 I (../Inc/stm32f2xx_hal_conf.h)(0x5B3D8BB8)
@@ -633,7 +634,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_i2c.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x5A94FFFE)
-F (..\User\I2CProc.c)(0x5B3DF13A)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\i2cproc.o --omf_browse stm32f207_iic-master\i2cproc.crf --depend stm32f207_iic-master\i2cproc.d)
+F (..\User\I2CProc.c)(0x5B3EE4BE)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\i2cproc.o --omf_browse stm32f207_iic-master\i2cproc.crf --depend stm32f207_iic-master\i2cproc.d)
 I (..\User\I2CProc.h)(0x5B3DF13A)
 I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f2xx.h)(0x5A94FFC8)
 I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f207xx.h)(0x5A94FFC8)
@@ -663,7 +664,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x5A94FFFE)
 I (../Inc/i2c.h)(0x5B3D8BB7)
-F (..\User\UsartCommandProc.c)(0x5B3DF8BB)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\usartcommandproc.o --omf_browse stm32f207_iic-master\usartcommandproc.crf --depend stm32f207_iic-master\usartcommandproc.d)
+F (..\User\UsartCommandProc.c)(0x5B3EE4B0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\usartcommandproc.o --omf_browse stm32f207_iic-master\usartcommandproc.crf --depend stm32f207_iic-master\usartcommandproc.d)
 I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f2xx.h)(0x5A94FFC8)
 I (../Drivers/CMSIS/Device/ST/STM32F2xx/Include/stm32f207xx.h)(0x5A94FFC8)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x5A94FFFE)
@@ -691,7 +692,7 @@ I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_i2c.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.h)(0x5A94FFFE)
 I (../Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.h)(0x5A94FFFE)
-I (..\User\UsartCommandProc.h)(0x5B3DD87F)
+I (..\User\UsartCommandProc.h)(0x5B3ED726)
 I (../Inc/usart.h)(0x5B3D8BB7)
 F (..\User\UserTask.c)(0x5B3DD4CA)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc -I../Drivers/STM32F2xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F2xx/Include -I../Drivers/CMSIS/Include -I..\User --C99-I C:\Users\80426\Documents\GitHub\STM32F207_IIC-Master\STM32F207_IIC-Master\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F2xx_DFP\2.3.0-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F207xx -DUSE_HAL_DRIVER -DSTM32F207xx-o stm32f207_iic-master\usertask.o --omf_browse stm32f207_iic-master\usertask.crf --depend stm32f207_iic-master\usertask.d)
 I (..\User\UserTask.h)(0x5AF56E59)

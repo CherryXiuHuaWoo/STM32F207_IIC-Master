@@ -64,10 +64,10 @@ void I2CReadFromSlave(int slaveNum, uint8_t *slaveAddrBuffer)
 {
 	int slaveIdx;
 	HAL_StatusTypeDef readStatus;
-	
+
 	for(slaveIdx = 0; slaveIdx < slaveNum; slaveIdx++)
 	{
-		readStatus = HAL_I2C_Master_Receive_DMA(&hi2c1, slaveAddrBuffer[slaveIdx]<<1, &gI2CReadBuff[slaveIdx][0], ReadBufferBytes);
+		readStatus = HAL_I2C_Master_Receive(&hi2c1, slaveAddrBuffer[slaveIdx]<<1, &gI2CReadBuff[slaveIdx][0], ReadBufferBytes, 10);
 		I2CProcCheck(0, readStatus);
 		if(readStatus == HAL_OK)
 		{

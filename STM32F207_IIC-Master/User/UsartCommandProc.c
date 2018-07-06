@@ -31,7 +31,7 @@ int I2CSlaveProc(uint8_t SlaveNum, uint8_t *SlaveAddrBuf)
 {
 	uint8_t bufIdx;
 	
-	if(SlaveNum < 4)
+	if(SlaveNum < 5)
 	{
 		for(bufIdx = 0; bufIdx < SlaveNum; bufIdx++)
 		{
@@ -56,11 +56,11 @@ void CommandProcUpdate(int procStatus, uint8_t commandCode)
 {
 	if(procStatus > 0)
 	{
-		printf("Command %d proc successful\r\n", commandCode);
+		printf("Command 0x%2x proc successful\r\n", commandCode);
 	}
 	else
 	{
-		printf("Command %d proc unsuccessful\r\n", commandCode);
+		printf("Command 0x%2x proc unsuccessful\r\n", commandCode);
 	}
 }
 
@@ -111,10 +111,10 @@ void UsartSaveRxDataToProcBuffer(uint32_t RxDataBytes)
 }
 
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+void HAL_UART_IDLECallback(UART_HandleTypeDef *huart)
 {
 	uint32_t clearStatus = 0;
-	printf("HAL_UART_RxCpltCallback\r\n");
+
 	if((__HAL_UART_GET_FLAG(&huart2, UART_FLAG_IDLE) != RESET))
 	{
 		__HAL_UART_CLEAR_IDLEFLAG(&huart2);
@@ -123,9 +123,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		clearStatus = huart2.Instance->DR;
 
 		HAL_UART_DMAStop(&huart2);
-		HAL_UART_Receive_DMA(&huart2, gUsartRxBuffer, USART_BUF_SIZE);
-
 		gUsartRxBytes = USART_BUF_SIZE - hdma_usart2_rx.Instance->NDTR;
+		HAL_UART_Receive_DMA(&huart2, gUsartRxBuffer, USART_BUF_SIZE);
+		
 		UsartSaveRxDataToProcBuffer(gUsartRxBytes);
 	}
 }
